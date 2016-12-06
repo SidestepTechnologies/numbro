@@ -111,8 +111,8 @@
         langLocaleCode: 'de-CH',
         cultureCode: 'de-CH',
         delimiters: {
-            thousands: ' ',
-            decimal: ','
+            thousands: '\'',
+            decimal: '.'
         },
         abbreviations: {
             thousand: 'k',
@@ -177,16 +177,71 @@
         },
         currency: {
             symbol: '€',
-            position: 'postfix'
+            position: 'postfix',
+            spaceSeparated: true
         },
         defaults: {
-            currencyFormat: ',4 a'
+            currencyFormat: ',4'
         },
         formats: {
             fourDigits: '4 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
             fullWithNoDecimals: ',0 $'
+        }
+    };
+
+    // CommonJS
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
+    }
+}.call(typeof window === 'undefined' ? this : window));
+
+/*!
+ * numbro.js language configuration
+ * language : English
+ * locale: Australia
+ * author : Benedikt Huss : https://github.com/ben305
+ */
+(function () {
+    'use strict';
+
+    var language = {
+        langLocaleCode: 'en-AU',
+        cultureCode: 'en-AU',
+        delimiters: {
+            thousands: ',',
+            decimal: '.'
+        },
+        abbreviations: {
+            thousand: 'k',
+            million: 'm',
+            billion: 'b',
+            trillion: 't'
+        },
+        ordinal: function (number) {
+            var b = number % 10;
+            return (~~ (number % 100 / 10) === 1) ? 'th' :
+                (b === 1) ? 'st' :
+                (b === 2) ? 'nd' :
+                (b === 3) ? 'rd' : 'th';
+        },
+        currency: {
+            symbol: '$',
+            position: 'prefix'
+        },
+        defaults: {
+            currencyFormat: ',4 a'
+        },
+        formats: {
+            fourDigits: '4 a',
+            fullWithTwoDecimals: '$ ,0.00',
+            fullWithTwoDecimalsNoCurrency: ',0.00',
+            fullWithNoDecimals: '$ ,0'
         }
     };
 
@@ -285,6 +340,60 @@
         },
         currency: {
             symbol: '€',
+            position: 'prefix'
+        },
+        defaults: {
+            currencyFormat: ',4 a'
+        },
+        formats: {
+            fourDigits: '4 a',
+            fullWithTwoDecimals: '$ ,0.00',
+            fullWithTwoDecimalsNoCurrency: ',0.00',
+            fullWithNoDecimals: '$ ,0'
+        }
+    };
+
+    // CommonJS
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
+    }
+}.call(typeof window === 'undefined' ? this : window));
+
+/*!
+ * numbro.js language configuration
+ * language : English
+ * locale: New Zealand
+ * author : Benedikt Huss : https://github.com/ben305
+ */
+(function () {
+    'use strict';
+
+    var language = {
+        langLocaleCode: 'en-NZ',
+        cultureCode: 'en-NZ',
+        delimiters: {
+            thousands: ',',
+            decimal: '.'
+        },
+        abbreviations: {
+            thousand: 'k',
+            million: 'm',
+            billion: 'b',
+            trillion: 't'
+        },
+        ordinal: function (number) {
+            var b = number % 10;
+            return (~~ (number % 100 / 10) === 1) ? 'th' :
+                (b === 1) ? 'st' :
+                (b === 2) ? 'nd' :
+                (b === 3) ? 'rd' : 'th';
+        },
+        currency: {
+            symbol: '$',
             position: 'prefix'
         },
         defaults: {
@@ -686,7 +795,8 @@
         },
         currency: {
             symbol: '$',
-            position: 'prefix'
+            position: 'postfix',
+            spaceSeparated : true
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -906,42 +1016,6 @@
         window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
-
-exports['cs-CZ'] = require('./cs-CZ.js');
-exports['da-DK'] = require('./da-DK.js');
-exports['de-CH'] = require('./de-CH.js');
-exports['de-DE'] = require('./de-DE.js');
-exports['en-GB'] = require('./en-GB.js');
-exports['en-IE'] = require('./en-IE.js');
-exports['en-ZA'] = require('./en-ZA.js');
-exports['es-AR'] = require('./es-AR.js');
-exports['es-ES'] = require('./es-ES.js');
-exports['et-EE'] = require('./et-EE.js');
-exports['fa-IR'] = require('./fa-IR.js');
-exports['fi-FI'] = require('./fi-FI.js');
-exports['fil-PH'] = require('./fil-PH.js');
-exports['fr-CA'] = require('./fr-CA.js');
-exports['fr-CH'] = require('./fr-CH.js');
-exports['fr-FR'] = require('./fr-FR.js');
-exports['he-IL'] = require('./he-IL.js');
-exports['hu-HU'] = require('./hu-HU.js');
-exports['it-IT'] = require('./it-IT.js');
-exports['ja-JP'] = require('./ja-JP.js');
-exports['lv-LV'] = require('./lv-LV.js');
-exports['nb-NO'] = require('./nb-NO.js');
-exports['nl-BE'] = require('./nl-BE.js');
-exports['nl-NL'] = require('./nl-NL.js');
-exports['pl-PL'] = require('./pl-PL.js');
-exports['pt-BR'] = require('./pt-BR.js');
-exports['pt-PT'] = require('./pt-PT.js');
-exports['ru-RU'] = require('./ru-RU.js');
-exports['ru-UA'] = require('./ru-UA.js');
-exports['sk-SK'] = require('./sk-SK.js');
-exports['sv-SE'] = require('./sv-SE.js');
-exports['th-TH'] = require('./th-TH.js');
-exports['tr-TR'] = require('./tr-TR.js');
-exports['uk-UA'] = require('./uk-UA.js');
-exports['zh-CN'] = require('./zh-CN.js');
 
 /*!
  * numbro.js language configuration
@@ -1358,7 +1432,7 @@ exports['zh-CN'] = require('./zh-CN.js');
         },
         currency: {
             symbol: 'R$',
-            position: 'postfix'
+            position: 'prefix'
         },
         defaults: {
             currencyFormat: ',4 a'
